@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Http\Livewire;
+
+use App\Models\Service;
+use Livewire\Component;
+use Livewire\WithPagination;
+
+class ServiceShow extends Component
+{
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+
+    public $search = '';
+    public $image;
+    public $services;
+    public $service_type;
+    public $description;
+    public $status;
+
+    public function render()
+    {
+        $this->services = Service::all();
+        return view('livewire.service-show', ['services' => Service::paginate(2)]);
+    }
+
+}
