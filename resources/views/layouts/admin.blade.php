@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('admin/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{ asset('admin/vendors/base/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/loading.css')}}">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="{{ asset('admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">

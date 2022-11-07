@@ -19,8 +19,8 @@
                 <p class="text-white fs-6 text-center">{{$promotionItem->description}}</p>
             </div>
 
-          <button class="btn btn-info" type="button">Book Appointment</button>
-          <button class="btn btn-info" type="button">View services</button>
+          <a class="btn btn-info" type="button" href="{{url('/set-appointment')}}">Book Appointment</a>
+          <a class="btn btn-info" type="button" href="{{url('/services')}}">View services</a>
         </div>
         </div>
       </div>

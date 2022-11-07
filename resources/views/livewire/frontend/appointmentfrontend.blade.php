@@ -49,7 +49,7 @@
                                     <i class="bi bi-calendar2-week"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control" data-appointmentdate="@this" id="picker" onchange='Livewire.emit("selectDate", this.value)'>
+                            <input wire:model.defer="schedule" type="text" class="form-control" data-appointmentdate="@this" id="picker" onchange='Livewire.emit("selectDate", this.value)'>
                         </div>
                         @error('schedule') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>

@@ -9,6 +9,7 @@ use App\Rules\TimeBetween;
 use App\Models\Appointment;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
+use Illuminate\Support\Carbon;
 use App\Mail\AppointmentMailable;
 use Illuminate\Support\Facades\Mail;
 
@@ -17,12 +18,23 @@ class Index extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $search;
-    // public function loadAppointments(){
-    //     $appointments = Appointment::orderBy('schedule')
-    //                 ->search($this->search)
-    //                 ->get();
-    //     return compact('appointments');
-    // }
+    public $service = 'all';
+    public $sched = null;
+    public function loadAppointments(){
+
+        $query = Appointment::orderBy('schedule')
+            ->search($this->search);
+
+        if($this->service != 'all'){
+            $query->where('services_id', $this->service);
+        }
+        if($this->sched != null){
+            $query->where('schedule', $this->sched);
+        }
+
+        $appointments = $query->paginate(5);
+        return compact('appointments');
+    }
 
     protected $listeners = ["selectDate" => 'getSelectedDate'];
     public function getSelectedDate( $date ) {
@@ -141,9 +153,12 @@ class Index extends Component
     }
     public function render()
     {
+        $now = Carbon::now();
         $appointments = Appointment::where('firstName', 'like', '%'.$this->search.'%')
                 ->orWhere('lastName', 'like', '%'.$this->search.'%')
-                ->orderBy('schedule','ASC')->paginate(5);
-        return view('livewire.appointment.index', ['appointments' => $appointments,'services'=> Service::all()]);
+                ->orWhere('services_id', 'like', '%'.$this->search.'%')
+                ->orWhere('schedule', 'like', '%'.$this->search.'%')
+                ->orderBy('schedule', 'desc')->paginate(5);
+        return view('livewire.appointment.index', $this->loadAppointments(), ['appointments' => $appointments,'services'=> Service::all()]);
     }
 }

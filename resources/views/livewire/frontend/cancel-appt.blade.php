@@ -1,3 +1,4 @@
+
 <div>
     @if ($currentStep == 1)
    <div class="card">
@@ -19,7 +20,6 @@
 
         <label >Email</label>
         <input class="form-control" type="text" wire:model="email">
-        {{-- <button class="btn btn-danger mt-2 float-end" wire:click="cancel">Cancel</button> --}}
         @error('email')
         <p class="text-danger">{{$message}}</p>
         @enderror
@@ -36,7 +36,6 @@
        </div>
 
        <div class="card-body p-3">
-           {{-- Step 1 : Personal Details --}}
        <div class="row mx-auto border">
            <div class="col-md-6 form-control border-0">
                <div class="mb-2 d-flex text-center">
@@ -90,7 +89,5 @@
     @if ($currentStep == 2)
     <button type="button" class="btn btn-info ms-auto" wire:click="cancel()">Cancel Appointment</button>
     @endif
-
-
 </div>
 </div>

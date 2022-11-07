@@ -4,10 +4,12 @@ namespace App\Http\Livewire\Frontend;
 
 use App\Models\Service;
 use Livewire\Component;
+use App\Mail\RemindMail;
 use App\Rules\DateBetween;
 use App\Rules\TimeBetween;
 use App\Models\Appointment;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use App\Mail\AppointmentMailable;
 use Illuminate\Support\Facades\Mail;
 
@@ -19,8 +21,7 @@ class AppointmentFrontend extends Component
     public $currentStep = 1;
 
     protected $listeners = ["selectDate" => 'getSelectedDate'];
-    public function getSelectedDate( $date ) {
-
+    public function getSelectedDate($date) {
         $this->schedule = $date;
     }
     public function mount(){
@@ -74,9 +75,16 @@ class AppointmentFrontend extends Component
             //'refNum' => $this->refNum,
             'refNum' => $refNum,
         ]);
-        Mail::to($this->email)->send(new AppointmentMailable
-        ($this->firstName, $this->schedule, $refNum, $this->services_id));
+        //$end = Carbon::parse($request->input('end_date'));
+        // Mail::to($this->email)->send(new AppointmentMailable
+        // ($this->firstName, $this->schedule, $refNum, $this->services_id));
 
+        if(Carbon::parse($this->schedule)->diffInHours(Carbon::now()) >= 2){
+            Mail::to($this->email)->later(Carbon::parse($this->schedule)->subHours(2), new RemindMail
+            ($this->firstName, $this->schedule, $refNum, $this->services_id));
+            // send(new RemindMail
+            // ($this->firstName, $this->schedule, $refNum, $this->services_id));
+        }
         $data = ['name'=>$this->firstName.' '.$this->lastName,'email'=>$this->email, 'refNum' => $refNum];
             return redirect()->route('appointment.success', $data);
     }

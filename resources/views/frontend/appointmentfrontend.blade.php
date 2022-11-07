@@ -31,6 +31,7 @@
         todayButton:true,
         scrollTime:true,
         minDateTime:true,
+        //minDateTime:now()->addHours(3),
         //defaultDate: moment().add(4,'days'),
         //disabledDates: ['2015-08-25', '2015-08-26'],
 

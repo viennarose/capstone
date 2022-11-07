@@ -36,16 +36,17 @@ class Appointment extends Model
 
             $query->where('refNum', 'like', $term)
                 ->orWhere('firstName', 'like', $term)
-                ->orWhere('lastName', 'like', $term);
+                ->orWhere('lastName', 'like', $term)
+                ->orWhere('schedule', 'like', $term);
         });
     }
-    public function scopeCancel($query, $terms){
-        collect(explode(" " , $terms))->filter()->each(function($term) use($query){
-            $term = '%'. $term . '%';
+    // public function scopeCancel($query, $terms){
+    //     collect(explode(" " , $terms))->filter()->each(function($term) use($query){
+    //         $term = '%'. $term . '%';
 
-            $query->where('refNum', 'like', $term)
-                ->orWhere('firstName', 'like', $term)
-                ->orWhere('lastName', 'like', $term);
-        });
-    }
+    //         $query->where('refNum', 'like', $term)
+    //             ->orWhere('firstName', 'like', $term)
+    //             ->orWhere('lastName', 'like', $term);
+    //     });
+    // }
 }

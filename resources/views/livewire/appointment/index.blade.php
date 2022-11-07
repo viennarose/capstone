@@ -12,12 +12,14 @@
                 <div class="card-header bg-info d-flex">
                     <h3 class="text-center fw-bold mt-3" style="font-family: Fantasy;">Appointments</h3>
                     <div class="d-flex ms-auto input-group w-50">
-                        <select class="form-select mt-1 ms-2" name="services_id" wire:model.defer="services_id">
-                            <option selected>Select service</option>
+                        <select class="form-select mt-1 ms-2" name="services_id" wire:model="service">
+                            {{-- <option selected>Select service</option> --}}
+                            <option value="all"> All</option>
                             @foreach($services as $service)
                                 <option value="{{$service->id}}">{{$service->service_type}}</option>
                             @endforeach
                         </select>
+                        <input type="date" wire:model="sched">
                         <input type="search" wire:model="search" class="form-control float-end mt-1 ms-2" placeholder="Search..." />
                         <span class="input-group-text bg-light mt-1" wire:model="search">
                             <i class="bi bi-search"></i></span>
@@ -44,14 +46,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{-- @if($schedule == \Carbon\Carbon::now()->addDays(1)) --}}
                             @forelse ($appointments as $appointment)
+
                                 <tr>
                                     <td>{{ $appointment->id }}</td>
                                     <td>{{ $appointment->firstName}} {{$appointment->lastName }}</td>
                                     <td>{{ $appointment->email }}</td>
                                     <td>{{ $appointment->services_id }}</td>
                                     <td>{{ $appointment->contact }}</td>
-                                    <td>{{ $appointment->schedule }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($appointment->schedule)->format('M j, Y h:i a')}}</td>
                                     <td>{{ $appointment->refNum }}</td>
                                     <td>
                                         <a type="button" data-bs-toggle="modal" data-bs-target="#updateAppointmentModal" wire:click="editAppointment({{$appointment->id}})">
@@ -62,11 +66,13 @@
                                         </a>
                                     </td>
                                 </tr>
+
                             @empty
                                 <tr>
                                     <td colspan="5">No Record Found</td>
                                 </tr>
                             @endforelse
+                            {{-- @endif --}}
                         </tbody>
                     </table>
                     <div>

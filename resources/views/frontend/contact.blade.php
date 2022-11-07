@@ -59,8 +59,9 @@
         </div>
 
     </div>
-    <div class="col-md-4 mt-3" data-aos="zoom-in">
-        <a href="{{url('https://www.google.com/maps/dir/9.9362302,123.9415511/9.9484559,123.9630103/@9.9412286,123.9351748,14z/data=!3m1!4b1!4m4!4m3!1m1!4e1!1m0')}}"><img src="{{ url('../images/map.png')}}" alt="" class="img-thumbnail img-fluid"></a>
+    <div class="col-md-4 mt-3 embed-responsive" data-aos="zoom-in">
+        <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d982.4555493890239!2d123.96225372914154!3d9.94874702049384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33aa2f70b74d642d%3A0x85a7b25524fc1cc0!2s88%20Santos%20Baura%20St%2C%20Tubigon%2C%206329%20Bohol!5e0!3m2!1sen!2sph!4v1667739953069!5m2!1sen!2sph" width="350" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        {{-- <a href="{{url('https://www.google.com/maps/dir/9.9362302,123.9415511/9.9484559,123.9630103/@9.9412286,123.9351748,14z/data=!3m1!4b1!4m4!4m3!1m1!4e1!1m0')}}"><img src="{{ url('../images/map.png')}}" alt="" class="img-thumbnail img-fluid"></a> --}}
         <a class="btn btn-primary d-block" href="{{url("https://www.google.com/maps/place/88+Santos+Baura+St,+Tubigon,+6329+Bohol/@9.9487936,123.9626889,21z/data=!4m5!3m4!1s0x33aa2f70b74d642d:0x85a7b25524fc1cc0!8m2!3d9.9487457!4d123.9628009")}}">Get Directions</a>
     </div>
 </div>
