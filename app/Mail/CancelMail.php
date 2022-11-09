@@ -18,9 +18,9 @@ class CancelMail extends Mailable
      */
 
 
-    public function __construct()
+    public function __construct($firstName)
     {
-        //
+        $this->firstName = $firstName;
     }
 
     /**
@@ -32,6 +32,9 @@ class CancelMail extends Mailable
     {
         $subject = "Appointment Cancellation";
         return $this->subject($subject)
-                    ->view('emails.confirmMail');
+                    ->view('emails.cancelMail')
+                    ->with([
+                        'firstName' => $this->firstName,
+                    ]);
     }
 }

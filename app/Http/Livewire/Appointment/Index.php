@@ -20,6 +20,11 @@ class Index extends Component
     public $search;
     public $service = 'all';
     public $sched = null;
+    public $dateRange = null;
+    public $fromDate = null;
+    public $toDate = null;
+
+
     public function loadAppointments(){
 
         $query = Appointment::orderBy('schedule')
@@ -28,8 +33,12 @@ class Index extends Component
         if($this->service != 'all'){
             $query->where('services_id', $this->service);
         }
-        if($this->sched != null){
-            $query->where('schedule', $this->sched);
+        // if($this->sched != null){
+        //     $query->where('schedule', $this->sched);
+        // }
+        if(($this->fromDate && $this->toDate) != null){
+            $query->whereDate('schedule', '>=', $this->fromDate)
+                ->whereDate('schedule', '<=', $this->toDate);
         }
 
         $appointments = $query->paginate(5);
@@ -151,6 +160,7 @@ class Index extends Component
         $this->schedule = '';
         $this->refNum = '';
     }
+
     public function render()
     {
         $now = Carbon::now();

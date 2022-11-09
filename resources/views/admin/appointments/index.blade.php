@@ -27,6 +27,7 @@
             todayBtn: true,
             minTime:'8:00',
             maxTime:'17:00',
+            disableDate:
             //timeHeightInTimePicker: 25,
 
         })

@@ -25,6 +25,7 @@
         <div class="card-body">
             {{-- Step 3: Preferred Service and Schedule --}}
             <div class="row">
+                @csrf
                 <div class="col-md-6 form-control border-0">
                     <div class="form-floating mb-4">
                         <select class="form-select" name="services_id" wire:model.defer="services_id">
@@ -36,7 +37,7 @@
 
                         <label for="services_id">Service</label>
                         @error('services_id')
-                            <p class="text-danger">{{$message}}</p>
+                            <p class="text-danger">Selecting service is required</p>
                         @enderror
                     </div>
 
@@ -75,6 +76,7 @@
         <div class="card-body">
             {{-- Step 2: Contact Details --}}
             <div class="row">
+                @csrf
                 <div class="col-md-6 form-control border-0">
                     <div class="mb-3">
                         <label class="fw-light">Contact Number</label>
@@ -103,6 +105,7 @@
             {{-- Step 1 : Personal Details --}}
         <div class="row">
             <div class="col-md-6 form-control border-0">
+                @csrf
                 <div class="mb-2">
                     <label>First Name</label>
                     <input type="text" class="form-control" wire:model="firstName">
@@ -150,6 +153,7 @@
         <div class="card-body p-3">
             {{-- Step 1 : Personal Details --}}
         <div class="row mx-auto border">
+            @csrf
             <div class="col-md-6 form-control border-0">
                 <div class="mb-2 d-flex text-center">
                     <h6 class="fw-light">Name: </h6>

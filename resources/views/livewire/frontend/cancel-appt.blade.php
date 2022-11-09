@@ -6,16 +6,17 @@
         <h3 class="text-center text-white" style="font-family: Garamond">Cancel Appointment</h3>
         <h6 class="text-center" style="font-family: Brush Script MT; font-style:italic">Make sure to enter the correct details</h6>
     </div>
-    <div class="card-body ">
+    <div class="card-body">
+        @csrf
         <label>Name</label>
         <input class="form-control" type="text" wire:model="firstName">
         @error('firstName')
-            <p class="text-danger">{{$message}}</p>
+            <p class="text-danger">Your name is required</p>
         @enderror
         <label>Enter Reference Number</label>
-        <input class="form-control" type="text" wire:model="refNum">
+        <input class="form-control" maxlength="14" type="text" wire:model="refNum">
         @error('refNum')
-            <p class="text-danger">{{$message}}</p>
+            <p class="text-danger">Please input the code correctly</p>
         @enderror
 
         <label >Email</label>

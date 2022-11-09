@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Frontend;
 use Livewire\Component;
 use App\Mail\CancelMail;
 use App\Models\Appointment;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class CancelAppt extends Component
@@ -34,16 +36,21 @@ class CancelAppt extends Component
         if($this->currentStep == 1){
             $this->validate([
                 'firstName' => ['required'],
-                'refNum' => ['required'],
-                'email' => ['required', 'email']
+                'refNum' => ['required', 'min:14', 'max:15', 'exists:appointments'],
+                'email' => ['required', 'email'],
             ]);
         }
     }
     public function cancel(){
-
-        $appt = Appointment::where('refNum', '=', $this->refNum);
+        $appt = Appointment::where('refNum', 'LIKE', $this->refNum);
         $appt->delete();
+        Mail::to($this->email)->send(new CancelMail
+         ($this->firstName));
         return redirect()->route('cancelled.appointment');
+
+
+            // ->orWhere(Carbon::parse($this->schedule)->diffInHours(Carbon::now()) >= 3);
+
 
 
         // if('refNum' != $this->refNum){

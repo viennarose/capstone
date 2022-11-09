@@ -11,7 +11,8 @@
       <div class="carousel-item {{ $key == 0 ? 'active':'' }}">
         <div class="custom-carousel-content">
         @if($promotionItem->image)
-            <img src="{{asset('storage')}}/{{$promotionItem->image}}" class="d-block w-100 img-fluid" alt="promotion" style="width:100px; height:450px">
+            <img src="{{asset('storage')}}/{{$promotionItem->image}}"
+            class="d-block w-100 img-fluid" alt="promotion" style="width:100px; height:450px">
         @endif
         <div class="carousel-caption d-grid gap-2 d-md-block">
             <div class="bg-dark opacity-25 w-50 p-5 mx-auto mb-3">
@@ -39,7 +40,8 @@
 
   <div data-aos="fade-up"
   data-aos-anchor-placement="top-center">
-    <div class="shadow-lg mb-5 p-5" style="background-image: url('/images/16154.jpg'); background-repeat:no-repeat; background-size: cover;">
+    <div class="shadow-lg mb-5 p-5"
+    style="background-image: url('/images/16154.jpg'); background-repeat:no-repeat; background-size: cover;">
         <div class="container" >
             @if($images->count() > 0)
                 <div class="row g-2" >
@@ -55,8 +57,8 @@
                     <div class="card mx-auto shadow-lg">
                         <img class="card-img-top" src="{{asset('storage')}}/{{$img->image}}" alt="">
                         <div class="card-body ">
-                            <h4 class="card-title mt-2">{{$img->service_type}}</h3>
-                            <p class="" style="font-size: 10px; text-align: justify;">{{$img->description}}</p>
+                        <h4 class="card-title mt-2">{{$img->service_type}}</h3>
+                        <p class="" style="font-size: 10px; text-align: justify;">{{$img->description}}</p>
                     </div>
                 </div>
                 </div>
@@ -77,10 +79,13 @@
                         <div class="card-body ms-2 ps-5">
                             <div class="d-flex">
                                 <div class="col-md-8 mt-5">
-                                    <h6 class="fst-italic fw-lighter text-justify">"{{$test->message}}" <br>-{{$test->name}}</h6>
+                                    <h6 class="fst-italic fw-lighter text-justify">
+                                        "{{$test->message}}" <br>-{{$test->name}}
+                                    </h6>
                                 </div>
                                 <div class="col-md-2 mt-5">
-                                    <img class="rounded-circle shadow-4-strong img-thumbnail" style="max-width: 100%; height: auto;" src="{{asset('storage')}}/{{$test->image}}" alt="Testimony 1">
+                                    <img class="rounded-circle shadow-4-strong img-thumbnail" style="max-width: 100%; height: auto;"
+                                    src="{{asset('storage')}}/{{$test->image}}" alt="Testimony 1">
                                 </div>
                             </div>
                         </div>
@@ -94,6 +99,4 @@
         </div>
     </div>
   </div>
-
-
 @endsection

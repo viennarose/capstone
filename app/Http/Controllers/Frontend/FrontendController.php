@@ -9,11 +9,14 @@ use App\Models\Testimony;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 
 class FrontendController extends Controller
 {
     public function index(){
 
+        $websetting = Setting::first();
+        View::share('webSetting', $websetting);
         $promotions = Promotion::where('status', '0')->get();
         $images = Service::where('status', '0')->limit(4)->get();
         $testimonies = Testimony::where('status', '0')->limit(1)->get();
@@ -26,11 +29,15 @@ class FrontendController extends Controller
     }
 
     public function viewContacts(){
+        $websetting = Setting::first();
+        View::share('webSetting', $websetting);
         $settings = Setting::get();
         return view('frontend.contact', compact('settings'));
     }
 
     public function viewAbout(){
+        $websetting = Setting::first();
+        View::share('webSetting', $websetting);
         $settings = Setting::get();
         $testimonies = Testimony::where('status', '0')->limit(3)->get();
         return view('frontend.about', compact('settings', 'testimonies'));

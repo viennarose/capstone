@@ -32,7 +32,6 @@
                     </div>
                     <div class="form-floating mb-4">
                         <select class="form-select" name="services_id" wire:model.defer="services_id">
-
                             <option selected>Select service</option>
                             @foreach($services as $service)
                                 <option value="{{$service->id}}">{{$service->service_type}}</option>

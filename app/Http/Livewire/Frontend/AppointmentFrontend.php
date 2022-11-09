@@ -22,6 +22,7 @@ class AppointmentFrontend extends Component
 
     protected $listeners = ["selectDate" => 'getSelectedDate'];
     public function getSelectedDate($date) {
+        $this->resetErrorBag();
         $this->schedule = $date;
     }
     public function mount(){
